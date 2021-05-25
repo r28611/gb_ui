@@ -20,32 +20,25 @@ final class NewsCell: UITableViewCell {
     @IBOutlet weak var viewedControl: LikeControl!
     private var newsPhotos = [UIImageView]()
     
-    func setup(newsPostViewModel: NewsPostViewModel, dateFormatter: DateFormatter) {
-        self.authorName.text = newsPostViewModel.authorName
-        self.authorAvatar.image.load(url: newsPostViewModel.avatarURL)
-        self.authorName.numberOfLines = self.authorName.calculateMaxLines()
-        let date = Date(timeIntervalSince1970: TimeInterval(newsPostViewModel.newsPost.date))
-        self.timeLabel.text = "\(dateFormatter.string(from: date))"
+    func configure(with viewModel: NewsPostViewModel) {
+    
+        authorName.text = viewModel.authorName
+        authorName.numberOfLines = authorName.calculateMaxLines()
         
-        self.newsText.text = newsPostViewModel.newsPost.text
-        self.newsText.numberOfLines = 3
+        authorAvatar.image = viewModel.authorAvatar
+        timeLabel.text = viewModel.date
+        newsText.text = viewModel.newsText
+        newsText.numberOfLines = 3
         
-        self.likeControl.counter = newsPostViewModel.newsPost.likes.count
-        self.likeControl.isLiked = newsPostViewModel.newsPost.likes.isLiked == 1
-        self.commentControl.counter = newsPostViewModel.newsPost.comments.count
-        self.shareControl.counter = newsPostViewModel.newsPost.reposts.count
-        self.viewedControl.counter = newsPostViewModel.newsPost.views.count
-        var photos = [Photo]()
+        likeControl.counter = viewModel.likes.count
+        likeControl.isLiked = viewModel.likes.isLiked == 1
+        commentControl.counter = viewModel.comments.count
+        shareControl.counter = viewModel.reposts.count
+        viewedControl.counter = viewModel.views.count
             
-        if let attachments = newsPostViewModel.newsPost.attachments {
-            for attachment in attachments {
-                if let photo = attachment.photo {
-                    photos.append(photo)
-                }
-            }
-        }
-        if photos.count > 0 {
-            self.configureNewsPhotoCollection(photos: photos)
+        if let photos = viewModel.attachment,
+            photos.count > 0 {
+            configureNewsPhotoCollection(photos: photos.compactMap({ $0.photo }))
             photoCollection.reloadData()
         }
     }

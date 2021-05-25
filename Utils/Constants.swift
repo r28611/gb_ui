@@ -65,8 +65,8 @@ class Constants {
     static let vkNonexistentGroupPhotoURL = "https://vk.com/images/community_100.png"
     
     //Color
-    static let greenColor = #colorLiteral(red: 0.1354144812, green: 0.8831900954, blue: 0.6704884171, alpha: 1)
-    static let pinkColor = UIColor.systemPink
+    static let greenColor = UIColor.turquoise
+    static let pinkColor = UIColor.lightPink
     static let greyColor = UIColor.gray
     
     //Texts

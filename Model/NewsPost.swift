@@ -59,9 +59,3 @@ struct Attachment: Decodable {
         case type, photo
     }
 }
-
-struct NewsPostViewModel {
-    var newsPost: NewsPost
-    var authorName: String
-    var avatarURL: URL
-}

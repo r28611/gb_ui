@@ -26,19 +26,3 @@ class Photo: Object, Decodable {
         return "id"
     }
 }
-
-class Size: Object, Decodable {
-    @objc dynamic var height: Int = 0
-    @objc dynamic var width: Int = 0
-    @objc dynamic var url: String = ""
-}
-
-class Like: Object, Decodable {
-    @objc dynamic var isLiked: Int = 0
-    @objc dynamic var count: Int = 0
-    
-    enum CodingKeys: String, CodingKey {
-        case isLiked = "user_likes"
-        case count
-    }
-}

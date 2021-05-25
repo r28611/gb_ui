@@ -31,17 +31,8 @@ class User: Object, Decodable {
         return "id"
     }
     
-    //индексы замедляют запись объектов в базу, но ускоряют выборку
     override static func indexedProperties() -> [String] {
             return ["name", "surname"]
     }
 
-}
-
-class City: Object, Decodable {
-    @objc dynamic var title = ""
-    
-    override static func primaryKey() -> String? {
-        return "title"
-    }
 }

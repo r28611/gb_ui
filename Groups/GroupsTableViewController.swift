@@ -78,13 +78,10 @@ class GroupsTableViewController: UITableViewController {
     }
     
     private func setRefresher() {
-        tableView.refreshControl = {
-            let refreshControl = UIRefreshControl()
-            refreshControl.tintColor = Constants.greenColor
-            refreshControl.attributedTitle = NSAttributedString(string: Constants.refreshTitle, attributes: [.font: UIFont.systemFont(ofSize: 12)])
-            refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
-            return refreshControl
-        }()
+        refreshControl = UIRefreshControl()
+        refreshControl?.tintColor = Constants.greenColor
+        refreshControl?.attributedTitle = NSAttributedString(string: Constants.refreshTitle, attributes: [.font: UIFont.systemFont(ofSize: 12)])
+        refreshControl?.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
     }
     
     // MARK: - Table view data source
